@@ -23,5 +23,5 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
-*sqlite*
+#*sqlite*
 static*

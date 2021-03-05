@@ -1,5 +1,6 @@
 from rest_framework import status
 from rest_framework.authentication import TokenAuthentication
+from rest_framework.filters import SearchFilter
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from rest_framework.response import Response
@@ -14,6 +15,8 @@ class UserPostView(ListCreateAPIView):
     queryset = UserPost.objects.all()
     # authentication_classes = (TokenAuthentication, )
     permission_classes = (IsAuthenticatedOrReadOnly,)
+    filter_backends = (SearchFilter, )
+    search_fields = ('title', )
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
